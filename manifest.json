@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "kareldiaz.fan-control",
+  "name": "Fan Control",
+  "version": "1.0.0",
+  "author": "Karel Diaz Alfonso",
+  "description": "nbfc fan control: speed slider and automatic mode",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Fan Control",
+    "description": "nbfc fan speed slider (0-100) and automatic mode button",
+    "category": "System",
+    "allowMultiple": false
+  }
+}
