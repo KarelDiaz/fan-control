@@ -129,7 +129,7 @@ Item {
     anchors.fill: parent
     bar: root.bar
     text: "󰈐"
-    tooltipText: root.nbfcAvailable ? "" : "nbfc no está instalado"
+    tooltipText: root.nbfcAvailable ? "" : "nbfc is not installed"
     active: root.nbfcAvailable && !root.autoControl
     opacity: root.nbfcAvailable ? 1.0 : 0.5
     onPressed: function(b) { root.toggle() }
@@ -164,13 +164,13 @@ Item {
       spacing: Style.space(14)
 
       PanelHero {
-        title: "Ventiladores"
+        title: "Fans"
         meta: !root.nbfcAvailable
-          ? "nbfc no instalado"
+          ? "nbfc not installed"
           : root.statusLoaded
-            ? (root.autoControl ? "Automático" : "Manual") +
+            ? (root.autoControl ? "Automatic" : "Manual") +
               (root.temperature >= 0 ? "  ·  " + Math.round(root.temperature) + "°C" : "")
-            : "Cargando…"
+            : "Loading…"
         detail: (root.nbfcAvailable && root.statusLoaded) ? root.targetSpeed + "%" : ""
         foreground: root.bar ? root.bar.barForeground : Color.foreground
         iconComponent: fanHeroIcon
@@ -180,7 +180,7 @@ Item {
         textFormat: Text.PlainText
         width: parent.width
         visible: !root.nbfcAvailable
-        text: "Este widget requiere nbfc (NoteBook FanControl).\n\nInstálalo y activa su servicio:\n  yay -S nbfc-linux\n  sudo systemctl enable --now nbfc_service"
+        text: "This widget requires nbfc (NoteBook FanControl).\n\nInstall it and enable its service:\n  yay -S nbfc-linux\n  sudo systemctl enable --now nbfc_service"
         color: root.bar ? root.bar.barForeground : Color.foreground
         font.family: root.bar ? root.bar.fontFamily : Style.font.family
         font.pixelSize: Style.font.caption
@@ -221,7 +221,7 @@ Item {
       Button {
         width: parent.width
         visible: root.nbfcAvailable
-        text: root.autoControl ? "Modo automático activado" : "Activar modo automático"
+        text: root.autoControl ? "Automatic mode enabled" : "Enable automatic mode"
         iconText: "󰔪"
         selected: root.autoControl
         enabled: !root.autoControl
@@ -232,7 +232,7 @@ Item {
         textFormat: Text.PlainText
         width: parent.width
         visible: root.autoControl
-        text: "Mueve la barra para fijar una velocidad manual"
+        text: "Move the slider to set a manual speed"
         color: Qt.darker(root.bar ? root.bar.barForeground : Color.foreground, 1.6)
         font.family: root.bar ? root.bar.fontFamily : Style.font.family
         font.pixelSize: Style.font.caption

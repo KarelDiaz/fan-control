@@ -1,36 +1,38 @@
 # fan-control
 
-Widget de barra para Omarchy que controla los ventiladores del portátil mediante **nbfc** (NoteBook FanControl): muestra la velocidad/temperatura, permite fijar una velocidad manual (0–100 %) con un deslizador y volver al modo automático.
+Bar widget for Omarchy that controls the laptop fans via **nbfc** (NoteBook FanControl): it shows speed/temperature, lets you set a manual speed (0–100%) with a slider, and switch back to automatic mode.
 
-## Requisitos
+![fan-control widget preview](preview.webp)
 
-Este widget **requiere nbfc instalado y su servicio activo**. Sin él, el widget solo muestra un aviso.
+## Requirements
 
-En Arch/Omarchy:
+This widget **requires nbfc installed and its service active**. Without it, the widget only shows a notice.
+
+On Arch/Omarchy:
 
 ```sh
-# Instalar nbfc (disponible en AUR)
+# Install nbfc (available in the AUR)
 yay -S nbfc-linux
 
-# Activar el servicio del sistema
+# Enable the system service
 sudo systemctl enable --now nbfc_service
 
-# (Opcional) cargar un perfil para tu modelo de portátil
+# (Optional) load a profile for your laptop model
 sudo nbfc config --set auto
 ```
 
-nbfc se comunica con su servicio del sistema a través de un socket, por lo que **no hace falta sudo** para usar el widget:
+nbfc talks to its system service over a socket, so **no sudo is needed** to use the widget:
 
-- `nbfc status` → estado de los ventiladores (velocidad objetivo, modo automático, temperatura)
-- `nbfc set -s N` → velocidad manual para todos los ventiladores (desactiva el control automático)
-- `nbfc set -a` → control automático basado en el perfil
+- `nbfc status` → fan state (target speed, automatic mode, temperature)
+- `nbfc set -s N` → manual speed for all fans (disables automatic control)
+- `nbfc set -a` → profile-based automatic control
 
-## Uso
+## Usage
 
-Al hacer clic en el icono de la barra se abre una tarjeta con:
+Clicking the bar icon opens a card with:
 
-- Estado actual (automático/manual, temperatura y velocidad objetivo).
-- Deslizador de velocidad 0–100 % (al moverlo se activa el modo manual).
-- Botón para volver al modo automático.
+- Current status (automatic/manual, temperature, and target speed).
+- 0–100% speed slider (moving it enables manual mode).
+- Button to switch back to automatic mode.
 
-Si `nbfc` no está instalado, el icono aparece atenuado y la tarjeta muestra las instrucciones de instalación.
+If `nbfc` is not installed, the icon appears dimmed and the card shows the installation instructions.
